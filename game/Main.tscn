@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://grid.gd" type="Script" id=1]
 [ext_resource path="res://fonts/font_res.tres" type="DynamicFontData" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://sprites/lotokN.png" type="Texture" id=6]
 [ext_resource path="res://sprites/help_screen.png" type="Texture" id=7]
+[ext_resource path="res://sprites/muted.png" type="Texture" id=8]
+[ext_resource path="res://sprites/mute.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=5]
 size = 63
@@ -125,6 +127,29 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="Mute" type="TextureButton" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -126.0
+margin_top = 15.0
+margin_right = -62.0
+margin_bottom = 79.0
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 4
+
+[node name="Unmute" type="TextureButton" parent="CanvasLayer"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -126.0
+margin_top = 15.0
+margin_right = -62.0
+margin_bottom = 79.0
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+
 [node name="grid" type="Node2D" parent="."]
 script = ExtResource( 1 )
 width = 4
@@ -212,6 +237,8 @@ anims/fade_out = SubResource( 7 )
 [node name="Effects" type="Node2D" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="grid" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Mute" to="." method="_on_Mute_pressed"]
+[connection signal="pressed" from="CanvasLayer/Unmute" to="." method="_on_Unmute_pressed"]
 [connection signal="timeout" from="grid/DestriyTimer" to="grid" method="_on_DestriyTimer_timeout"]
 [connection signal="timeout" from="grid/CollapsTimer" to="grid" method="_on_CollapsTimer_timeout"]
 [connection signal="timeout" from="grid/RefillTimer" to="grid" method="_on_RefillTimer_timeout"]

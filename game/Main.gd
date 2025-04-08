@@ -1,10 +1,12 @@
 extends Node2D
 
 var effect_prefabs = {
-	"pop": preload("res://effects/pop.tscn")
+	"pop": preload("res://effects/pop.tscn"),
 }
 
 func add_effect(effect_name, pos = Vector2()):
+	if Global.muted:
+		return
 	if effect_name in effect_prefabs.keys():
 		var effect_obj = effect_prefabs[effect_name].instance()
 		effect_obj.position = pos
@@ -39,3 +41,20 @@ func hide_help_screen(animated = false):
 
 func _on_HelpScreenButton_pressed():
 	hide_help_screen(true)
+
+
+func update_mute_button():
+	$CanvasLayer/Mute.visible = !Global.muted
+	$CanvasLayer/Unmute.visible = Global.muted
+
+func toggle_mute():
+	Global.toggle_mute()
+	update_mute_button()
+	
+
+func _on_Mute_pressed():
+	toggle_mute()
+
+
+func _on_Unmute_pressed():
+	toggle_mute()

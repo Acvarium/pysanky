@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/157541__husky70__coconut-pop.mp3-89035397584bcbbcd353c7f3d81f8718.mp3str"
+
+[deps]
+
+source_file="res://audio/157541__husky70__coconut-pop.mp3"
+dest_files=[ "res://.import/157541__husky70__coconut-pop.mp3-89035397584bcbbcd353c7f3d81f8718.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/554022__dodrio__pop.ogg-2c251471ae6f9af7b0da3f6f0ffd9d22.oggstr"
+
+[deps]
+
+source_file="res://audio/554022__dodrio__pop.ogg"
+dest_files=[ "res://.import/554022__dodrio__pop.ogg-2c251471ae6f9af7b0da3f6f0ffd9d22.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

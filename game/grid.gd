@@ -333,7 +333,8 @@ func destroy_matched():
 					Global.score += 1
 	main_node.update_score(Global.score)
 	if pop_positions.size() > 0:
-		main_node.add_effect("pop")
+		for p in pop_positions.size() / 2:
+			main_node.add_effect("pop")
 
 
 func collaps_columns():

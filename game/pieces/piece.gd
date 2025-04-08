@@ -1,6 +1,7 @@
 extends Node2D
 var color_index = -1
 var matched = false
+onready var main_node = get_tree().get_root().get_node("Main")
 
 
 func move(target, ease_mode = Tween.EASE_IN_OUT):
@@ -8,8 +9,10 @@ func move(target, ease_mode = Tween.EASE_IN_OUT):
 		Tween.TRANS_ELASTIC, ease_mode)
 	$Tween.start()
 
+
 func highlite(to_highlite = true):
 	$Halo.visible = to_highlite
+
 
 func _ready():
 	randomize()
