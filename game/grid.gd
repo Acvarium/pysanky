@@ -203,6 +203,8 @@ func is_in_grid(grid_pos):
 
 
 func _input(event):
+	if Global.show_help_screen:
+		return
 	if locked:
 		return
 	if event is InputEventScreenTouch and event.index == 0:

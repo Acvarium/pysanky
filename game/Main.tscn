@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://grid.gd" type="Script" id=1]
 [ext_resource path="res://fonts/font_res.tres" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/reset_button.png" type="Texture" id=4]
 [ext_resource path="res://Main.gd" type="Script" id=5]
 [ext_resource path="res://sprites/lotokN.png" type="Texture" id=6]
+[ext_resource path="res://sprites/help_screen.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=5]
 size = 63
@@ -18,6 +19,61 @@ size = 52
 outline_size = 4
 use_filter = true
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("HelpScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HelpScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("HelpScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HelpScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Main" type="Node2D"]
 position = Vector2( 0, 5 )
@@ -129,6 +185,30 @@ text = "0112
 1213
 5555"
 
+[node name="HelpCanvas" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="HelpScreen" type="ColorRect" parent="HelpCanvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.542969, 0.456009, 0.456009, 0.439216 )
+
+[node name="HelpTexture" type="TextureRect" parent="HelpCanvas/HelpScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
+[node name="HelpScreenButton" type="Button" parent="HelpCanvas/HelpScreen"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HelpCanvas"]
+anims/RESET = SubResource( 8 )
+anims/fade_out = SubResource( 7 )
+
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="grid" method="_on_RestartButton_pressed"]
 [connection signal="timeout" from="grid/DestriyTimer" to="grid" method="_on_DestriyTimer_timeout"]
 [connection signal="timeout" from="grid/CollapsTimer" to="grid" method="_on_CollapsTimer_timeout"]
@@ -136,3 +216,4 @@ text = "0112
 [connection signal="timeout" from="grid/UnlockTimer" to="grid" method="_on_UnlockTimer_timeout"]
 [connection signal="timeout" from="grid/SwapBackTimer" to="grid" method="_on_SwapBackTimer_timeout"]
 [connection signal="timeout" from="grid/RestartTimer" to="grid" method="_on_RestartTimer_timeout"]
+[connection signal="pressed" from="HelpCanvas/HelpScreen/HelpScreenButton" to="." method="_on_HelpScreenButton_pressed"]
