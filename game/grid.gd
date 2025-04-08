@@ -322,14 +322,18 @@ func find_matches():
 
 
 func destroy_matched():
+	var pop_positions = []
 	for i in range(width):
 		for j in range(height):
 			if all_pieces[i][j] != null:
 				if all_pieces[i][j].matched:
+					pop_positions.append(all_pieces[i][j].position)
 					all_pieces[i][j].queue_free()
 					all_pieces[i][j] = null
 					Global.score += 1
 	main_node.update_score(Global.score)
+	if pop_positions.size() > 0:
+		main_node.add_effect("pop")
 
 
 func collaps_columns():

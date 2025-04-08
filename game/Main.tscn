@@ -209,6 +209,8 @@ anchor_bottom = 1.0
 anims/RESET = SubResource( 8 )
 anims/fade_out = SubResource( 7 )
 
+[node name="Effects" type="Node2D" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/RestartButton" to="grid" method="_on_RestartButton_pressed"]
 [connection signal="timeout" from="grid/DestriyTimer" to="grid" method="_on_DestriyTimer_timeout"]
 [connection signal="timeout" from="grid/CollapsTimer" to="grid" method="_on_CollapsTimer_timeout"]
