@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://grid.gd" type="Script" id=1]
+[ext_resource path="res://fonts/font_res.tres" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/halo.png" type="Texture" id=3]
+[ext_resource path="res://sprites/reset_button.png" type="Texture" id=4]
+[ext_resource path="res://Main.gd" type="Script" id=5]
+[ext_resource path="res://sprites/lotokN.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=5]
+size = 63
+outline_size = 4
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 52
+outline_size = 4
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Main" type="Node2D"]
+position = Vector2( 0, 5 )
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 299.983, 505 )
+scale = Vector2( 0.518538, 0.527344 )
+texture = ExtResource( 6 )
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer"]
+self_modulate = Color( 1, 1, 1, 0.858824 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -113.0
+margin_right = 64.0
+margin_bottom = 15.0
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 64, 64 )
+texture_normal = ExtResource( 4 )
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_top = 5.0
+margin_bottom = 84.0
+custom_colors/font_color = Color( 0.25098, 0.0980392, 0.0980392, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 0.431373 )
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="GoodMoves" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_left = 21.0
+margin_top = 5.0
+margin_right = -455.0
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0.25098, 0.0980392, 0.0980392, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 0.509804 )
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource( 1 )
+width = 4
+height = 6
+
+[node name="DestriyTimer" type="Timer" parent="grid"]
+wait_time = 0.3
+one_shot = true
+
+[node name="CollapsTimer" type="Timer" parent="grid"]
+wait_time = 0.1
+one_shot = true
+
+[node name="RefillTimer" type="Timer" parent="grid"]
+wait_time = 0.1
+one_shot = true
+
+[node name="UnlockTimer" type="Timer" parent="grid"]
+wait_time = 0.3
+one_shot = true
+
+[node name="SwapBackTimer" type="Timer" parent="grid"]
+wait_time = 0.5
+one_shot = true
+
+[node name="DebugSprite" type="Sprite" parent="grid"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 3 )
+
+[node name="RestartTimer" type="Timer" parent="grid"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Moves" type="Label" parent="grid"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 36.0
+margin_top = 920.0
+margin_right = 76.0
+margin_bottom = 1002.0
+text = "0112
+1222
+1211
+1213
+5555"
+
+[node name="Moves2" type="Label" parent="grid"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 508.0
+margin_top = 920.0
+margin_right = 548.0
+margin_bottom = 1002.0
+text = "0112
+1222
+1211
+1213
+5555"
+
+[connection signal="pressed" from="CanvasLayer/RestartButton" to="grid" method="_on_RestartButton_pressed"]
+[connection signal="timeout" from="grid/DestriyTimer" to="grid" method="_on_DestriyTimer_timeout"]
+[connection signal="timeout" from="grid/CollapsTimer" to="grid" method="_on_CollapsTimer_timeout"]
+[connection signal="timeout" from="grid/RefillTimer" to="grid" method="_on_RefillTimer_timeout"]
+[connection signal="timeout" from="grid/UnlockTimer" to="grid" method="_on_UnlockTimer_timeout"]
+[connection signal="timeout" from="grid/SwapBackTimer" to="grid" method="_on_SwapBackTimer_timeout"]
+[connection signal="timeout" from="grid/RestartTimer" to="grid" method="_on_RestartTimer_timeout"]
