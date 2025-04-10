@@ -9,7 +9,7 @@ pitch_scale_range = 0.3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -9.0
+volume_db = -35.0
 
 [node name="KillTimer" type="Timer" parent="."]
 one_shot = true

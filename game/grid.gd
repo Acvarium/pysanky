@@ -220,6 +220,9 @@ func _input(event):
 			reset_piece_color(first_touch_on_grid)
 			var final_touch = event.position
 			final_touch_on_grid = pixel_to_grid(final_touch)
+			var touch_diff = final_touch_on_grid - first_touch_on_grid
+			touch_diff = Vector2(sign(touch_diff.x), sign(touch_diff.y))
+			final_touch_on_grid = first_touch_on_grid + touch_diff
 			if is_in_grid(final_touch_on_grid):
 				if is_swap_allowed(first_touch_on_grid, final_touch_on_grid):
 					swap_pieces(first_touch_on_grid, final_touch_on_grid)
